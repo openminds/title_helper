@@ -26,4 +26,20 @@ class TitleHelperTest < Test::Unit::TestCase
   def test_error_on_h1
     assert_equal "<h1 class=\"error\">This is wrong</h1>", @helper.title("This is wrong", :error => true)
   end
+  
+  def test_class_on_h1
+    assert_equal "<h1 class=\"my-class\">Header with class</h1>", @helper.title("Header with class", :class => 'my-class')
+  end
+  
+  def test_id_on_h1
+    assert_equal "<h1 id=\"my-id\">Header with id</h1>", @helper.title("Header with id", :id => 'my-id')
+  end
+  
+  def test_class_and_id_on_h1
+    assert_equal "<h1 class=\"my-class\" id=\"my-id\">Header with class and id</h1>", @helper.title("Header with class and id", :class => 'my-class', :id => 'my-id')
+  end
+  
+  def test_class_and_error_on_h1
+    assert_equal "<h1 class=\"my-class error\">Header with error and class</h1>", @helper.title("Header with error and class", :class => 'my-class', :error => true)
+  end
 end

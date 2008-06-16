@@ -17,8 +17,8 @@ module DefV
       case arguments
       when String
         @title = arguments
-        css_class = 'error' if options[:error]
-        return content_tag(:h1, [options[:header], @title, options[:trailer]].compact.join(' '), :class => css_class)
+        options[:class] = [options[:class], 'error'].compact.join(' ') if options[:error]
+        return content_tag(:h1, [options[:header], @title, options[:trailer]].compact.join(' '), options.except(:error, :header, :trailer))
       when Hash
         sitename = arguments[:site_name]
         if @title
