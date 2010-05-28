@@ -18,7 +18,11 @@ module DefV
       when String
         @title = arguments
         options[:class] = [options[:class], 'error'].compact.join(' ') if options[:error]
-        return content_tag(:h1, [options[:header], @title, options[:trailer]].compact.join(' '), options.except(:error, :header, :trailer))
+        
+        title = [options[:header], @title, options[:trailer]].compact.join(' ')
+        title = title.html_safe if title.respond_to?(:html_safe)
+        
+        return content_tag(:h1, title, options.except(:error, :header, :trailer))
       when Hash
         sitename = arguments[:site_name]
         if @title
