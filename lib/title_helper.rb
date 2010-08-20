@@ -1,6 +1,7 @@
+require 'title_helper/railtie' if defined?(::Rails::Railtie)
+
 module DefV
   module TitleHelper
-
     # This method should be used in your layout and your actions.
     # 
     # In your action:
